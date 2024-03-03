@@ -86,9 +86,9 @@ const Header = () => {
             </div>
             <div className="">
                 <div className="flex items-center gap-4">
-                    <User className=' w-5 h-5 md:h-7 md:w-7  hover:text-primary cursor-pointer' />
-                    <Heart className=' w-5 h-5 md:h-7 md:w-7  hover:text-primary cursor-pointer' />
-                    <ShoppingCart className=' w-5 h-5 md:h-7 md:w-7  hover:text-primary cursor-pointer' />
+                    <User className=' w-5 h-5 md:h-7 md:w-7  hover:text-secondary cursor-pointer' />
+                    <Heart className=' w-5 h-5 md:h-7 md:w-7  hover:text-secondary cursor-pointer' />
+                    <ShoppingCart className=' w-5 h-5 md:h-7 md:w-7  hover:text-secondary cursor-pointer' />
                 </div>
             </div>
         </div>

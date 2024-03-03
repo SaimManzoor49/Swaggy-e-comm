@@ -8,7 +8,8 @@ export const store = {
         t1:"BEST OF SEASON SALE",
         t2:"SAVE 40% OFF",
         t3:"DISCOVER NOW",
-    }
+    },
+    freeShipping:50
 
 }
 
