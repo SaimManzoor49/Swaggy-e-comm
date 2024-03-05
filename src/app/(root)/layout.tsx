@@ -4,7 +4,7 @@ import React from 'react'
 
 const RootLayout = ({children}:{children:React.ReactNode}) => {
   return (
-    <>
+    <div>
     <Header />
     <aside className='fixed w-[280px]  h-full hidden md:block'>
     <Sidebar />
@@ -12,7 +12,7 @@ const RootLayout = ({children}:{children:React.ReactNode}) => {
     <aside className='absolute md:left-[300px]'>
     {children}
     </aside>
-    </>
+    </div>
   )
 }
 

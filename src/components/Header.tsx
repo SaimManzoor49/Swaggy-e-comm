@@ -3,18 +3,13 @@ import React from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { Heart, Menu, Search, ShoppingCart, User } from 'lucide-react'
-import { header, sidebar, store } from '@/constants/content'
+import { header,  sidebar, store } from '@/constants/content'
 import { cn } from '@/lib/utils'
 import {
     Sheet,
     SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
-import { FaHamburger } from 'react-icons/fa'
-import { GiHamburger } from 'react-icons/gi'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -22,7 +17,7 @@ import { usePathname } from 'next/navigation'
 const Header = () => {
     const pathname = usePathname()
     return (
-        <div className={cn("flex justify-between items-center gap-6 px-4 h-16 sticky top-0 z-10 bg-primary")}>
+        <div className={cn("flex justify-between items-center gap-6 px-4 h-16 fixed w-full max-w-screen-2xl top-0 z-10 bg-primary ")}>
             <div className="items-center hidden md:flex">
                 <Search className='h-4 w-4 me-2' />
                 <Input

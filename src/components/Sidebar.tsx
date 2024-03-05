@@ -12,7 +12,7 @@ const Sidebar = () => {
 
     return (
         <div className='flex flex-col justify-between pt-20 ps-6 h-[calc(100%-90px)] '>
-            <Link href={'/'} className='text-2xl font-bold'>Swaggy</Link>
+            <Link href={'/'} className='text-2xl font-bold hover:text-secondary'>Swaggy</Link>
             <div className='flex flex-col gap-6'>
                 {sidebar.links.map((link) => {
 
@@ -21,7 +21,7 @@ const Sidebar = () => {
                     return (
                         <Link
                             key={link.title}
-                            className={cn('font-medium', isActive && "text-secondary")}
+                            className={cn('font-medium hover:text-secondary hover:underline', isActive && "text-secondary")}
                             href={link.href}
                         >
                             {link.title}
