@@ -34,8 +34,8 @@ const Sidebar = () => {
                     {sidebar.social.map((icon) => {
                         const Icon = icon.Icon
                         return (
-                            <Link key={icon.title} href={icon.link}>
-                            <Icon  className='cursor-pointer' color={icon.color} size={'20px'} />
+                            <Link key={icon.title} href={icon.link} className='hover:scale-125 transition-all'>
+                            <Icon  className='cursor-pointer ' color={icon.color} size={'20px'} />
                             </Link>
                         )
                     })}

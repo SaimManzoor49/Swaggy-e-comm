@@ -27,14 +27,14 @@ const ShopByInstagram = () => {
                             width={1920}
                             className='object-cover max-h-[200px] group-hover:brightness-75  transition-all duration-200'
                         />
-                        <div className="flex justify-center items-center gap-2 bg-neutral-800 ">
-                            <div className="flex justify-center items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-200 text-white">
+                        <div className="flex justify-center items-center gap-2 lg:bg-neutral-800 ">
+                            <div className="flex justify-center items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-200 lg:text-white">
                                 <BiHeart />
                                 {
                                     <p>{post.likes}</p>
                                 }
                             </div>
-                            <div className="flex justify-center items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-200 text-white">
+                            <div className="flex justify-center items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-200 lg:text-white">
                                 <BiComment />
                                 {
                                     <p>{post.comments}</p>
