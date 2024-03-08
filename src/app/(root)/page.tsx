@@ -2,6 +2,7 @@ import CustomerQuote from '@/components/CustomerQuote'
 import Footer from '@/components/Footer'
 import ProductsSection from '@/components/ProductsSection'
 import ShopByInstagram from '@/components/ShopByInstagram'
+import TraandingBanners from '@/components/TraandingBanners'
 import { store } from '@/constants/content'
 import { BadgeInfo, LifeBuoy, Rocket } from 'lucide-react'
 import Image from 'next/image'
@@ -71,7 +72,17 @@ const Home = () => {
       <ProductsSection position='right' />
       <CustomerQuote />
       <ProductsSection />
-      <hr />
+      <TraandingBanners />
+      <div className="block lg:flex ">
+      <TraandingBanners 
+      isSmallBanner={true}
+      />
+      <TraandingBanners 
+      isSmallBanner={true}
+      />
+
+      </div>
+      <hr className='my-16' />
       <ShopByInstagram />
       <Footer />
     </div>

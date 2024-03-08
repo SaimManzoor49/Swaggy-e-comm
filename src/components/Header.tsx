@@ -12,12 +12,15 @@ import {
 } from "@/components/ui/sheet"
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import useScrollDetection from '@/hooks/useScrolled'
 
 
 const Header = () => {
     const pathname = usePathname()
+    const isScrolled = useScrollDetection()
     return (
-        <div className={cn("flex justify-between items-center gap-6 px-4 h-16 fixed w-full max-w-screen-2xl top-0 z-10 bg-primary ")}>
+        <div className={cn("flex justify-between items-center gap-6 px-4 h-16 fixed w-full max-w-screen-2xl top-0 z-10 bg-primary ",
+        isScrolled && 'shadow-md')}>
             <div className="items-center hidden md:flex">
                 <Search className='h-4 w-4 me-2' />
                 <Input

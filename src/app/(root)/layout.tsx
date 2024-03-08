@@ -9,7 +9,7 @@ const RootLayout = ({children}:{children:React.ReactNode}) => {
     <aside className='fixed w-[280px]  h-full hidden md:block'>
     <Sidebar />
     </aside>
-    <aside className='absolute md:left-[300px]'>
+    <aside className='absolute md:left-[300px] mt-16'>
     {children}
     </aside>
     </div>
