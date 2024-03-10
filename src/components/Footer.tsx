@@ -33,7 +33,7 @@ const Footer = () => {
                             alt='MasterCard'
                             height={1080}
                             width={1920}
-                            className='object-cover max-h-[40px] max-w-[40px]   '
+                            className='object-cover max-h-[40px] max-w-[40px] hover:scale-[1.75] transition-all duration-150 cursor-not-allowed   '
                         />
                         <Image
                             priority
@@ -43,7 +43,7 @@ const Footer = () => {
                             alt='VisaCard'
                             height={1080}
                             width={1920}
-                            className='object-cover max-h-[40px] max-w-[40px]   '
+                            className='object-cover max-h-[40px] max-w-[40px] hover:scale-[1.75] transition-all duration-150 cursor-not-allowed   '
                         />
                         <Image
                             priority
@@ -53,7 +53,7 @@ const Footer = () => {
                             alt='JazzCash'
                             height={1080}
                             width={1920}
-                            className='object-cover max-h-[40px] max-w-[40px]   '
+                            className='object-cover max-h-[40px] max-w-[40px] hover:scale-[1.75] transition-all duration-150 cursor-not-allowed   '
                         />
                         <Image
                             priority
@@ -63,7 +63,7 @@ const Footer = () => {
                             alt='JazzCash'
                             height={1080}
                             width={1920}
-                            className='object-cover max-h-[40px] max-w-[40px]   '
+                            className='object-cover max-h-[40px] max-w-[40px] hover:scale-[1.75] transition-all duration-150 cursor-not-allowed   '
                         />
                     </div>
                 </div>

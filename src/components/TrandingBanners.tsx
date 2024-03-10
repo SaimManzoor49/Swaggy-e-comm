@@ -5,13 +5,13 @@ import { Button } from './ui/button'
 import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-interface TraandingBannersProps{
+interface TrandingBannersProps{
     isSmallBanner?:boolean
 }
 
-const TraandingBanners = ({isSmallBanner}:TraandingBannersProps) => {
+const TrandingBanners = ({isSmallBanner}:TrandingBannersProps) => {
     return (
-        <div className='mt-8 '>
+        <div className='mt-16 '>
             <div className="relative">
                 <div className="px-4">
                     <Image
@@ -39,4 +39,4 @@ const TraandingBanners = ({isSmallBanner}:TraandingBannersProps) => {
     )
 }
 
-export default TraandingBanners
+export default TrandingBanners
