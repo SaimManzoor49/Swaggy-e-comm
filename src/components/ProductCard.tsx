@@ -28,7 +28,8 @@ const ProductCard = () => {
                     <p className=' font-bold'>{"Title"}</p>
                     <p className='font-medium'>{"300"}$</p>
                 </div>
-                <div className=" justify-center items-center flex-col absolute top-[35%]  hidden sm:flex sm:left-[40%] md:left-[30%] lg:left-[37%] xl:left-[40%] opacity-0 group-hover:opacity-100 transition-all text-white">
+                {/* <div className=" justify-center items-center flex-col absolute top-[35%]  hidden sm:flex sm:left-[40%] md:left-[30%] lg:left-[37%] xl:left-[40%] opacity-0 group-hover:opacity-100 transition-all text-white"> */}
+                <div className="flex justify-center items-center flex-col absolute z-20 top-[35%] w-full    opacity-0 group-hover:opacity-100 transition-all text-white">
                     <ShoppingBag className='lg:w-10 lg:h-10' />
                     <p>Shop now</p>
                 </div>

@@ -4,12 +4,15 @@ import React, { useState } from 'react'
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import { FaRegStar, FaStar } from 'react-icons/fa'
-import { Heart, Minus, Plus } from 'lucide-react'
+import { Expand, Heart, Minus, Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogHeader, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 
 const ProductPage = ({ params }: { params: { id: string } }) => {
     const [quantity, setQuantity] = useState(1);
-    const { title, reviews, rating, descritption, price,category } = store.product
+    const [mainImage, setMainImage] = useState(store.coverImage);
+    const { title, reviews, rating, descritption, price, category } = store.product
 
     const handleIncrement = () => {
         setQuantity(s => s + 1)
@@ -25,9 +28,74 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
 
     return (
         <div>
-            <div className="grid grid-cols-2 px-4 mt-6">
+            <div className="grid grid-cols-1 2xl:grid-cols-2 px-4 mt-6 gap-4">
                 <div className="">
-                    <div className="">elo</div>
+                    <div className="flex gap-">
+                        <div className="flex-col gap-2 hidden sm:flex">
+                            <Image
+                                priority
+                                placeholder='blur'
+                                blurDataURL={store.blurDataUrl}
+                                src={store.instagramPosts[0].img}
+                                alt='coverImage'
+                                height={720}
+                                width={1280}
+                                className='object-cover min-h-[150px] max-w-[140px]'
+                                onClick={(e) => {
+
+                                    setMainImage(store.instagramPosts[0].img)
+                                }}
+                            />
+                            <Image
+                                priority
+                                placeholder='blur'
+                                blurDataURL={store.blurDataUrl}
+                                src={'https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
+                                alt='coverImage'
+                                height={720}
+                                width={1280}
+                                className='object-cover min-h-[150px] max-w-[140px]'
+                                onClick={(e) => {
+
+                                    setMainImage('https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
+                                }}
+                            />
+                        </div>
+                        <div className="relative flex justify-center items-center">
+                            <Image
+                                priority
+                                placeholder='blur'
+                                blurDataURL={store.blurDataUrl}
+                                src={mainImage}
+                                alt='coverImage'
+                                height={1080}
+                                width={1920}
+                                className='object-cover max-h-[550px] min-h-[350px] max-w-[calc(100%-20px)]'
+                            />
+                            <div className="">
+                                <AlertDialog>
+                                    <AlertDialogTrigger className='absolute bottom-2 right-8 bg-white p-2 hover:scale-110 transition-all duration-150'><Expand /></AlertDialogTrigger>
+                                    <AlertDialogContent className='h-[85vh] min-w-[50vw]' >
+                                        <div className="">
+                                            <Image
+                                                priority
+                                                placeholder='blur'
+                                                blurDataURL={store.blurDataUrl}
+                                                src={mainImage}
+                                                alt='coverImage'
+                                                height={1080}
+                                                width={1920}
+                                                className='object-cover h-[100%] max-w-[100%]'
+                                            />
+                                        </div>
+                                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                        {/* <AlertDialogAction>Continue</AlertDialogAction> */}
+                                    </AlertDialogContent>
+                                </AlertDialog>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="">
                     <div className="flex justify-center text-center items-center flex-col gap-4 border-b-2 pb-3">
@@ -42,21 +110,21 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
                         </div>
                         <h6 className='text-secondary font-medium text-xl'>${price}</h6>
                         <p>{descritption}</p>
-                        <div className="flex justify-center items-center gap-4">
-                            <div className="border flex justify-center items-center gap-2 px-1 py-1">
+                        <div className="flex justify-center items-center gap-1 xsm:gap-4">
+                            <div className="border flex justify-center items-center gap-1 xsm:gap-2 px-1 py-1">
                                 <Button variant={'ghost'}>
-                                    <Plus className='w-4 h-4' onClick={handleIncrement} />
+                                    <Minus className='h-2 w-2 xsm:w-4 xsm:h-4' onClick={handleDecrement} />
                                 </Button>
-                                <p className=''>{quantity}</p>
+                                <p className='text-xs xsm:text-base'>{quantity}</p>
                                 <Button variant={'ghost'}>
-                                    <Minus className='w-4 h-4' onClick={handleDecrement} />
+                                    <Plus className='h-2 w-2 xsm:w-4 xsm:h-4' onClick={handleIncrement} />
                                 </Button>
 
                             </div>
-                            <Button variant={'outline'} className='rounded-none border-secondary text-secondary hover:bg-secondary hover:text-white transition-all px-12 py-6'>ADD TO CART</Button>
+                            <Button variant={'outline'} className='rounded-none border-secondary text-secondary hover:bg-secondary hover:text-white transition-all px-8 xsm:px-12 py-6 text-xs xsm:text-base'>ADD TO CART</Button>
                         </div>
                         <Button variant={'ghost'} className='flex justify-center items-center gap-2 group hover:bg-transparent hover:text-secondary transition-all'><Heart className='h-4 w-4' />
-                        <span className='group-hover:underline'>Add to Wishlist</span></Button>
+                            <span className='group-hover:underline'>Add to Wishlist</span></Button>
                     </div>
                     <div className="flex justify-between items-center py-2">
                         <p>Category: {category}</p>
