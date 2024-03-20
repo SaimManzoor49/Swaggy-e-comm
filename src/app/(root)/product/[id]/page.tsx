@@ -8,6 +8,8 @@ import { Expand, Heart, Minus, Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogHeader, AlertDialogTrigger } from '@/components/ui/alert-dialog'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+import YouMayAlsoLike from '@/components/YouMayAlsoLike'
 
 const ProductPage = ({ params }: { params: { id: string } }) => {
     const [quantity, setQuantity] = useState(1);
@@ -131,6 +133,47 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
                         <p>Share:  <Button variant={'secondary'} className='rounded-none text-white hover:text-secondary border hover:border-secondary '>Get Link</Button></p>
                     </div>
                 </div>
+            </div>
+            <div className="my-4">
+                <Tabs defaultValue="Description"  className="w-full flex justify-center items-center flex-col">
+                    <TabsList className="hidden sm:block">
+                        <TabsTrigger className='lg:px-5' value="Description">Description</TabsTrigger>
+                        <TabsTrigger className='lg:px-5' value="AdditionalInformation">Additional Information</TabsTrigger>
+                        <TabsTrigger className='lg:px-5' value="Shipping&Returns">Shipping & Returns</TabsTrigger>
+                        <TabsTrigger className='lg:px-5' value="Reviews">Reviews</TabsTrigger>
+                    </TabsList>
+                    <TabsList className=" sm:hidden m-1">
+                        <TabsTrigger className='lg:px-5' value="Description">Description</TabsTrigger>
+                        <TabsTrigger className='lg:px-5' value="AdditionalInformation">Additional Information</TabsTrigger>
+                    </TabsList>
+                    <TabsList className=" sm:hidden">
+                        <TabsTrigger className='lg:px-5' value="Shipping&Returns">Shipping & Returns</TabsTrigger>
+                        <TabsTrigger className='lg:px-5' value="Reviews">Reviews</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="Description" className='w-full px-3'>
+
+                        <div className="border-2">Product Description</div>
+
+                    </TabsContent>
+                    <TabsContent value="AdditionalInformation" className='w-full px-3'>
+
+                        <div className="border-2">Additional Information</div>
+
+                    </TabsContent>
+
+                    <TabsContent value="Shipping&Returns" className='w-full px-3'>
+
+                        <div className="border-2">Shipping & Returns</div>
+
+                    </TabsContent>
+
+                    <TabsContent value="Reviews" className='w-full px-3'>
+
+                        <div className="border-2">Reviews</div>
+
+                    </TabsContent>
+                </Tabs>
+                <YouMayAlsoLike />
             </div>
         </div>
     )
