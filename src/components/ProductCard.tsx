@@ -8,7 +8,7 @@ const ProductCard = () => {
 
     return (
         <div>
-            <div className="relative group cursor-pointer ">
+            <div className="relative group cursor-pointer hover:shadow-md ">
                 <Image
                     priority
                     placeholder='blur'

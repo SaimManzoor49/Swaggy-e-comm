@@ -86,7 +86,7 @@ const Home = () => {
       <hr className='my-16' />
       <TrandingProductsSection />
       <ShopByInstagram />
-      <Footer />
+      
     </div>
   )
 }
