@@ -5,11 +5,24 @@ import { store } from '@/constants/content';
 import { Button } from '@/components/ui/button';
 import WhatCustomersSayAboutUs from '@/components/WhatCustomersSayAboutUs';
 import { cn } from '@/lib/utils';
-import { ArrowRight, Heart, LifeBuoy, Puzzle } from 'lucide-react';
+import { ArrowRight, Heart, LifeBuoy, Puzzle, Slash } from 'lucide-react';
+import { Breadcrumb, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import TeamMemberCard from '@/components/TeamMemberCard';
 const AboutPage = () => {
   const { BannerImage, whoWeAreImage } = store.AboutPage
   return (
     <div>
+      <Breadcrumb className='my-2'>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>About</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
       <div className="relative">
         <Image
           priority
@@ -65,7 +78,7 @@ const AboutPage = () => {
 
       <div className="">
         <div className="relative">
-        <Image
+          <Image
             priority
             placeholder='blur'
             blurDataURL={store.blurDataUrl}
@@ -112,6 +125,15 @@ const AboutPage = () => {
           <Heart className='w-6 h-6 text-secondary' />
           <h3 className='text-base xsm:text-xl font-bold'>Made With Love</h3>
           <p className='text-muted-foreground'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias molestiae animi porro nostrum voluptatum maiores officiis, dignissimos iure nisi dolorem. Quasi debitis quaerat non autem nihil placeat aperiam veritatis repellat?</p>
+        </div>
+      </div>
+      <div className="">
+        <h3 className='text-center text-2xl font-bold'>Meet Our Team</h3>
+        <div className="grid grid-cols-1 xsm:grid-cols-2 lg:grid-cols-4 gap-4 px-4 lg:px-2  my-12">
+          <TeamMemberCard />
+          <TeamMemberCard />
+          <TeamMemberCard />
+          <TeamMemberCard />
         </div>
       </div>
     </div>
