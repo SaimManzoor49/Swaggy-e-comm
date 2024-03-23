@@ -66,6 +66,10 @@ export const store = {
     img3:"https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     img1Title:"URBAN SPIRIT COLLECTION 2021",
     img1Quote:"IT STARTED WITH A SIMPLE IDEA"
+  },
+  AboutPage:{
+    BannerImage : "https://plus.unsplash.com/premium_photo-1674625943116-5f7eeed92917?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    whoWeAreImage:"https://plus.unsplash.com/premium_photo-1664298398535-39dba5173c52?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTN8fG1lbiUyMGNsb3RoaW5nfGVufDB8fDB8fHww"
   }
 };
 

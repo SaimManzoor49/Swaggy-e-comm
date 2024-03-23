@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter,Dosis } from "next/font/google";
+import { Inter, Dosis } from "next/font/google";
+import { Providers } from "./providers"
 import "./globals.css";
 
 const inter = Dosis({ subsets: ["latin"] });
@@ -18,9 +19,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="max-w-screen-2xl mx-auto relative">
-        {children}
+          <Providers>
+            {children}
+          </Providers>
         </div>
-        </body>
+      </body>
     </html>
   );
 }

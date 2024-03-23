@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss"
-
+import { nextui } from "@nextui-org/react"
 const config = {
   darkMode: ["class"],
   content: [
@@ -7,7 +7,8 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -32,6 +33,17 @@ const config = {
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          '50': '#f6fce9',
+          '100': '#ecf8cf',
+          '200': '#d8f2a4',
+          '300': '#bde76f',
+          '400': '#a2d843',
+          '500': '#8bc926',
+          '600': '#659818',
+          '700': '#4d7417',
+          '800': '#3f5c18',
+          '900': '#374e19',
+          '950': '#1b2b08',
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -82,12 +94,13 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         shimmer: "shimmer 2s linear infinite"
       },
-      screens:{
+      screens: {
         "xsm": "430px",
       }
     },
   },
-  plugins: [require("tailwindcss-animate")],
+
+  plugins: [require("tailwindcss-animate"), nextui()],
 } satisfies Config
 
 export default config
