@@ -10,7 +10,7 @@ import { BiLocationPlus, BiMailSend, BiPhone, BiTime } from 'react-icons/bi'
 const ContactPage = () => {
     return (
         <div>
-            <Breadcrumb className='my-2'>
+            <Breadcrumb className='my-2 ms-2'>
                 <BreadcrumbList>
                     <BreadcrumbItem>
                         <BreadcrumbLink href="/">Home</BreadcrumbLink>
@@ -38,12 +38,12 @@ const ContactPage = () => {
                 </div>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 px-2 my-12 gap-6">
-                <div className="">
+                <div className="mb-4">
                     <div className="my-2 ">
-                        <h3 className='text-lg lg:text-2xl font-bold'>Contact Information</h3>
+                        <h3 className='text-lg lg:text-2xl font-bold my-2'>Contact Information</h3>
                         <p>Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
                     </div>
-                    <div className="grid grid-cols-2 mt-4 gap-4">
+                    <div className="grid grid-cols-1 xsm:grid-cols-2 mt-8 gap-4 ">
                         <div className="flex  justify-start gap-2">
                             <BiLocationPlus className='text-secondary min-h-6 min-w-6' />
                             <p className=''>70 Washington Square South New York, NY 10012, United States</p>
@@ -54,7 +54,7 @@ const ContactPage = () => {
                                 11am-7pm ET</p>
                         </div>
                     </div>
-                    <div className="grid grid-cols-2 mt-4 gap-4">
+                    <div className="grid grid-cols-1 xsm:grid-cols-2 mt-4 gap-4">
                         <div className="flex  justify-start gap-2">
                             <BiPhone className='text-secondary min-h-6 min-w-6' />
                             <p className=''>+92 423 567</p>

@@ -12,7 +12,7 @@ const AboutPage = () => {
   const { BannerImage, whoWeAreImage } = store.AboutPage
   return (
     <div>
-      <Breadcrumb className='my-2'>
+      <Breadcrumb className='my-2 ms-2'>
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink href="/">Home</BreadcrumbLink>

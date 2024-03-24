@@ -16,8 +16,7 @@ const Sidebar = () => {
             <div className='flex flex-col gap-6'>
                 {sidebar.links.map((link) => {
 
-                    const isActive = pathname.includes(link.href)
-
+                    const isActive = (pathname.includes(link.href) && link.href.length > 1) || pathname === link.href
                     return (
                         <Link
                             key={link.title}

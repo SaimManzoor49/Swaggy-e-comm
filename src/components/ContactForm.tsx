@@ -52,9 +52,9 @@ const ContactForm = () => {
 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
-                    <div className="flex items-center justify-between ">
+                    <div className="flex items-center gap-4 w-full ">
 
-                        <div className="">
+                        <div className="w-full">
                             <FormField
                                 control={form.control}
                                 name="name"
@@ -68,7 +68,7 @@ const ContactForm = () => {
                                 )}
                             />
                         </div>
-                        <div className="">
+                        <div className="w-full">
                             <FormField
                                 control={form.control}
                                 name="email"
@@ -84,8 +84,8 @@ const ContactForm = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center justify-between ">
-                        <div className="">
+                    <div className="flex items-center gap-4 w-full ">
+                        <div className="w-full">
                             <FormField
                                 control={form.control}
                                 name="phone"
@@ -99,7 +99,7 @@ const ContactForm = () => {
                                 )}
                             />
                         </div>
-                        <div className="">
+                        <div className="w-full">
                             <FormField
                                 control={form.control}
                                 name="subject"
