@@ -7,10 +7,10 @@ const RootLayout = ({children}:{children:React.ReactNode}) => {
   return (
     <div>
     <Header />
-    <aside className='fixed w-[280px]  h-full hidden md:block'>
+    <aside className='fixed w-[200px] lg:w-[250px]  h-full hidden md:block'>
     <Sidebar />
     </aside>
-    <aside className='absolute md:left-[300px] mt-16'>
+    <aside className='absolute md:left-[200px] lg:left-[250px] mt-16'>
     {children}
     <Footer />
     </aside>

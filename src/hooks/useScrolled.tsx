@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
-const useScrollDetection = () => {
+const useScrollDetection = (value=12) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       // Check if page has been scrolled
-      if (window.scrollY > 12) {
+      if (window.scrollY > value) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);

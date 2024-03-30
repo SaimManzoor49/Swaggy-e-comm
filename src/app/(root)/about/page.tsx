@@ -34,7 +34,7 @@ const AboutPage = () => {
           width={1920}
           className='object-cover max-h-[380px] text-white'
         />
-        <div className="absolute top-[34%] xsm:top-[45%] flex items-center justify-center flex-col w-full text-white font-bold">
+        <div className="absolute h-full top-0  flex items-center justify-center flex-col w-full text-white font-bold">
           <h3 className='text-2xl lg:text-5xl text-white'>About Us</h3>
           <p>Who we are</p>
         </div>
