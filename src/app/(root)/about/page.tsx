@@ -1,12 +1,11 @@
 import React from 'react'
-import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
 import Image from 'next/image';
 import { store } from '@/constants/content';
 import { Button } from '@/components/ui/button';
 import WhatCustomersSayAboutUs from '@/components/WhatCustomersSayAboutUs';
 import { cn } from '@/lib/utils';
 import { ArrowRight, Heart, LifeBuoy, Puzzle, Slash } from 'lucide-react';
-import { Breadcrumb, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import TeamMemberCard from '@/components/TeamMemberCard';
 const AboutPage = () => {
   const { BannerImage, whoWeAreImage } = store.AboutPage

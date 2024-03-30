@@ -1,7 +1,6 @@
 import ContactForm from '@/components/ContactForm'
-import { Breadcrumb, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
 import { store } from '@/constants/content'
-import { BreadcrumbItem } from '@nextui-org/react'
 import { LocateIcon } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
