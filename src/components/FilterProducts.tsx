@@ -4,6 +4,8 @@ import { cn } from '@/lib/utils'
 import React from 'react'
 import CategoryFilter from './CategoryFilter'
 import SizesFilter from './SizesFilter'
+import ColorFilter from './ColorFilter'
+import BrandFilter from './BrandFilter'
 
 const FilterProducts = () => {
 
@@ -15,7 +17,7 @@ const FilterProducts = () => {
                     <Button variant={'ghost'} size={'sm'} className='text-secondary hover:text-secondary hover:bg-transparen p-0 hover:underline'>Clear All</Button>
                 </div>
                 <div className="px-2">
-                    <Accordion type="multiple" >
+                    <Accordion type="single" > {/*test:type multiple */}
                         <AccordionItem value="item-1">
                             <AccordionTrigger>Category</AccordionTrigger>
                             <AccordionContent>
@@ -31,13 +33,13 @@ const FilterProducts = () => {
                         <AccordionItem value="item-3">
                             <AccordionTrigger>Colour</AccordionTrigger>
                             <AccordionContent>
-                                Yes. It adheres to the WAI-ARIA design pattern.
+                               <ColorFilter />
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-4">
                             <AccordionTrigger>Brand</AccordionTrigger>
                             <AccordionContent>
-                                Yes. It adheres to the WAI-ARIA design pattern.
+                                <BrandFilter />
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-5">
