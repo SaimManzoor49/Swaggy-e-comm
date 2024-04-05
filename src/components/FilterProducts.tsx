@@ -6,6 +6,7 @@ import CategoryFilter from './CategoryFilter'
 import SizesFilter from './SizesFilter'
 import ColorFilter from './ColorFilter'
 import BrandFilter from './BrandFilter'
+import PriceFilter from './PriceFilter'
 
 const FilterProducts = () => {
 
@@ -45,7 +46,7 @@ const FilterProducts = () => {
                         <AccordionItem value="item-5">
                             <AccordionTrigger>Price</AccordionTrigger>
                             <AccordionContent>
-                                Yes. It adheres to the WAI-ARIA design pattern.
+                               <PriceFilter />
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>

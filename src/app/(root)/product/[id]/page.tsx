@@ -114,12 +114,12 @@ const ProductPage = ({ params }: { params: { id: string } }) => {
                         <p>{descritption}</p>
                         <div className="flex justify-center items-center gap-1 xsm:gap-4">
                             <div className="border flex justify-center items-center gap-1 xsm:gap-2 px-1 py-1">
-                                <Button variant={'ghost'}>
-                                    <Minus className='h-2 w-2 xsm:w-4 xsm:h-4' onClick={handleDecrement} />
+                                <Button variant={'ghost'} onClick={handleDecrement}>
+                                    <Minus className='h-2 w-2 xsm:w-4 xsm:h-4'/>
                                 </Button>
                                 <p className='text-xs xsm:text-base'>{quantity}</p>
-                                <Button variant={'ghost'}>
-                                    <Plus className='h-2 w-2 xsm:w-4 xsm:h-4' onClick={handleIncrement} />
+                                <Button variant={'ghost'} onClick={handleIncrement}>
+                                    <Plus className='h-2 w-2 xsm:w-4 xsm:h-4'/>
                                 </Button>
 
                             </div>
