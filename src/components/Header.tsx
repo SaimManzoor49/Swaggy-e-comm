@@ -13,13 +13,14 @@ import {
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import useScrollDetection from '@/hooks/useScrolled'
+import { ThemeModeToggle } from './theme/theme-toggle'
 
 
 const Header = () => {
     const pathname = usePathname()
     const isScrolled = useScrollDetection()
     return (
-        <div className={cn("flex justify-between items-center gap-6 px-4 h-16 fixed w-full max-w-screen-2xl top-0 z-10 bg-primary ",
+        <div className={cn("flex justify-between items-center gap-6 px-4 h-16 fixed w-full max-w-screen-2xl top-0 z-10 bg-primary dark:bg-[#1D1D20] ",
         isScrolled && 'shadow-md')}>
             <div className="items-center hidden md:flex">
                 <Search className='h-4 w-4 me-2' />
@@ -87,6 +88,7 @@ const Header = () => {
                     <User className=' w-5 h-5 md:h-7 md:w-7  hover:text-secondary cursor-pointer' />
                     <Heart className=' w-5 h-5 md:h-7 md:w-7  hover:text-secondary cursor-pointer' />
                     <ShoppingCart className=' w-5 h-5 md:h-7 md:w-7  hover:text-secondary cursor-pointer' />
+                    <ThemeModeToggle className=' w-5 h-5 md:h-7 md:w-7  hover:text-secondary cursor-pointer hover:bg-transparent p-1'/>
                 </div>
             </div>
         </div>

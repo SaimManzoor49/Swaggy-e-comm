@@ -51,7 +51,7 @@ const AboutPage = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 px-2 gap-4 mt-6 bg-secondary-50 py-14">
+      <div className="grid grid-cols-1 lg:grid-cols-2 px-2 gap-4 mt-6 bg-secondary-50 text-black py-14">
         <div className="">
           <h3 className='text-3xl font-bold my-2'>Who We Are</h3>
           <h5 className='text-secondary font-bold my-2'>Pellentesque odio nisi, euismod pharetra a ultricies

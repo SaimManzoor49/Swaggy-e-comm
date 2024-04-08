@@ -7,7 +7,7 @@ import { store } from '@/constants/content'
 
 const Footer = () => {
     return (
-        <div className='bg-neutral-800 sm:px-12 pb-8'>
+        <div className='bg-neutral-800 dark:bg-transparent sm:px-12 pb-8'>
             <div className="flex flex-col justify-center items-center h-56 gap-2">
                 <h5 className='text-white text-xl font-bold'>Get The Latest Deals</h5>
                 <p className='text-muted-foreground'>don&apos;t miss out any discounts and sales</p>
