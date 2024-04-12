@@ -1,5 +1,4 @@
 import { store } from '@/constants/content'
-import { Heart } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -10,7 +9,7 @@ const ShopByInstagram = () => {
         <div className='pt-8'>
             <div className="flex flex-col gap-6 justify-center items-center">
                 <h6 className='text-xl md:text-2xl font-bold'>Shop By Instagram</h6>
-                <p className=' font-medium text-muted-foreground'>@SWAGGY INSTAGRAM</p>
+                <p className='text-sm sm:text-base font-medium text-muted-foreground'>@SWAGGY INSTAGRAM</p>
             </div>
             <div className="pt-6 grid grid-cols-2 lg:grid-cols-4">
                 {store.instagramPosts.map((post) => (

@@ -95,8 +95,8 @@ export const sidebar = {
       href: "/contact",
     },
     {
-      title: "Login",
-      href: "/login",
+      title: "Login/Signup",
+      href: "/auth",
     },
   ],
   social: [

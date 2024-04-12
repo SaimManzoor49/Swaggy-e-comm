@@ -12,7 +12,6 @@ const useScrollDetection = (value=12) => {
         setIsScrolled(false);
       }
     };
-
     // Add scroll event listener when component mounts
     window.addEventListener('scroll', handleScroll);
 
@@ -20,7 +19,7 @@ const useScrollDetection = (value=12) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [value]);
 
   return isScrolled;
 };

@@ -5,9 +5,9 @@ import ProductCard from './ProductCard'
 const TrandingProductsSection = () => {
     return (
         <div>
-            <h4 className='text-muted-foreground font-medium text-center'>NEW ARRIVALS</h4>
-            <h1 className='text-4xl font-bold text-center my-7'>TRANDING NOW</h1>
-            <div className="">
+            <h4 className='text-sm sm:text-base text-muted-foreground font-medium text-center'>NEW ARRIVALS</h4>
+            <h1 className='text-xl sm:text-4xl font-bold text-center my-7'>TRANDING NOW</h1>
+            <div className="md:ms-12">
 
                 <Carousel className='w-[calc(100%-110px)] md:w-[calc(100%-70px)] mx-auto md:mx-0'  >
                     <CarouselContent className="-ml-2 md:-ml-4 w-24 xsm:w-32 sm:w-56 md:w-48 lg:w-56">
