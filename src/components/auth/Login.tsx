@@ -52,7 +52,7 @@ const Login = () => {
                 <CardHeader>
                     <CardTitle>Account</CardTitle>
                     <CardDescription>
-                        Make changes to your account here. Click save when you're done.
+                        Continue with your account here. Click login when you&apos;re done.
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-2">

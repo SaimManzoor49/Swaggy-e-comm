@@ -52,7 +52,7 @@ const Signup = () => {
                 <CardHeader>
                     <CardTitle>Account</CardTitle>
                     <CardDescription>
-                        Make changes to your account here. Click save when you're done.
+                        Create your new account here. Click signup when you&apos;re done.
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-2">
