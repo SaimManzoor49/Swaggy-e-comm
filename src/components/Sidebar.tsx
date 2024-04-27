@@ -46,7 +46,7 @@ const Sidebar = () => {
                         )
                     })}
                 </div>
-                <div className="text-muted-foreground text-sm flex flex-col ps-3 lg:ps-5 pt-2">
+                <div className="text-muted-foreground text-sm flex flex-col ps-3 lg:ps-5 pt-2 underline ">
                     <p>Copyright &copy; {new Date().getFullYear()} {store.name} Store.</p>
                     <p>All Rights Reserved</p>
                 </div>

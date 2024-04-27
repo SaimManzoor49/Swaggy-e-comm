@@ -20,15 +20,39 @@ import { ArrowBigRight, ArrowRight } from 'lucide-react'
 import { Checkbox } from '../ui/checkbox'
 import Link from 'next/link'
 import { FaFacebook, FaGoogle } from 'react-icons/fa'
-
-
+import { graphql } from '@/gql'
+import { gql, useMutation, useQuery } from '@apollo/client'
 
 const formSchema = z.object({
     email: z.string().min(6).max(100).email(),
     password: z.string().min(6).max(100)
 })
 
+const LOGIN_USER = graphql(`
+mutation LoginUser($input: LoginInput!) {
+    loginUser(input: $input) {
+      data {
+        email
+        username
+      }
+    }
+  }
+`)
+
+const GET_USER = gql`
+query GetUser($username: String) {
+    getUser(username: $username) {
+      data {
+        email
+      }
+    }
+  }
+`
+
 const Login = () => {
+
+    // const [LoginUser, { data, loading, error }] = useMutation(LOGIN_USER)
+    const { loading, error, data } = useQuery(GET_USER);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -38,12 +62,36 @@ const Login = () => {
         },
     })
 
+    if (loading) {
+        console.log('Logging in...'); // You might want to handle loading state accordingly
+    }
+
+    if (data) {
+        console.log('Login successful:', data);
+        // Handle successful login (e.g., navigate to a different page)
+    } else if (error) {
+        console.error('Login failed:', error);
+        // Handle login errors (e.g., display an error message)
+    }
+
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: z.infer<typeof formSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        console.log(values)
+        // console.log(values)
+        const { email, password } = values;
+
+        try {
+
+            // LoginUser({ variables: { input: { email, password } } })
+
+         
+            // Handle successful login (e.g., navigate to a different page)
+        } catch (error) {
+            console.error('Login error:', error);
+            // Handle login errors (e.g., display an error message)
+        }
     }
 
     return (
@@ -103,7 +151,7 @@ const Login = () => {
                         <div className="flex w-full gap-4">
                             <Button variant={'outline'} type="submit" className='flex items-center gap-2 rounded-none hover:text-white border-2 px-5 w-full group'>Google <FaGoogle className='transition-all duration-100 group-hover:text-[#DB4437] w-4 h-4' /></Button>
                             <Button variant={'outline'} type="submit" className='flex items-center gap-2 rounded-none hover:text-white border-2 px-5 w-full group'>Facebool <FaFacebook className='transition-all duration-100 group-hover:text-[#1877F2] h-4 w-4' /></Button>
-                            
+
                         </div>
                     </Form>
                 </CardContent>

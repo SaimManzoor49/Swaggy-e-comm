@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Dosis } from "next/font/google";
 import { Providers } from "./providers"
 import "./globals.css";
+import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 
 const inter = Dosis({ subsets: ["latin"] });
 
@@ -15,6 +16,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  if (true) {
+    // Adds messages only in a dev environment
+    loadDevMessages();
+    loadErrorMessages();
+  }
   return (
     <html lang="en">
       <body className={inter.className}>
