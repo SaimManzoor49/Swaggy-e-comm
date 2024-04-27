@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card'
-import { Label } from '../ui/label'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { z } from "zod"
@@ -10,18 +9,17 @@ import { useForm } from "react-hook-form"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import { ArrowBigRight, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Checkbox } from '../ui/checkbox'
 import Link from 'next/link'
 import { FaFacebook, FaGoogle } from 'react-icons/fa'
 import { graphql } from '@/gql'
-import { gql, useMutation, useQuery } from '@apollo/client'
+import {  useMutation} from '@apollo/client'
 
 const formSchema = z.object({
     email: z.string().min(6).max(100).email(),
@@ -39,20 +37,11 @@ mutation LoginUser($input: LoginInput!) {
   }
 `)
 
-const GET_USER = gql`
-query GetUser($username: String) {
-    getUser(username: $username) {
-      data {
-        email
-      }
-    }
-  }
-`
+
 
 const Login = () => {
 
-    // const [LoginUser, { data, loading, error }] = useMutation(LOGIN_USER)
-    const { loading, error, data } = useQuery(GET_USER);
+    const [LoginUser, { data, loading, error }] = useMutation(LOGIN_USER)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -62,18 +51,7 @@ const Login = () => {
         },
     })
 
-    if (loading) {
-        console.log('Logging in...'); // You might want to handle loading state accordingly
-    }
-
-    if (data) {
-        console.log('Login successful:', data);
-        // Handle successful login (e.g., navigate to a different page)
-    } else if (error) {
-        console.error('Login failed:', error);
-        // Handle login errors (e.g., display an error message)
-    }
-
+   
 
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -84,9 +62,20 @@ const Login = () => {
 
         try {
 
-            // LoginUser({ variables: { input: { email, password } } })
+            LoginUser({ variables: { input: { email, password } } })
 
-         
+            if (loading) {
+                console.log('Logging in...'); // You might want to handle loading state accordingly
+            }
+        
+            if (data) {
+                console.log('Login successful:', data);
+                // Handle successful login (e.g., navigate to a different page)
+            } else if (error) {
+                console.error('Login failed:', error);
+                // Handle login errors (e.g., display an error message)
+            }
+        
             // Handle successful login (e.g., navigate to a different page)
         } catch (error) {
             console.error('Login error:', error);

@@ -9,9 +9,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false)
 
   const client = new ApolloClient({
-    uri: process.env.BACKEND_URI,
+    uri: process.env.NEXT_PUBLIC_BACKEND_URI,
     cache: new InMemoryCache(),
   });
+
 
   useEffect(() => {
     setMounted(true)
