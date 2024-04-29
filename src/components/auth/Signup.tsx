@@ -20,6 +20,8 @@ import { ArrowBigRight, ArrowRight } from 'lucide-react'
 import { Checkbox } from '../ui/checkbox'
 import Link from 'next/link'
 import { FaFacebook, FaGoogle } from 'react-icons/fa'
+import { graphql } from '@/gql'
+import { useQuery } from '@apollo/client'
 
 
 
@@ -30,6 +32,17 @@ const formSchema = z.object({
 
 const Signup = () => {
 
+    const QUERY = graphql(`
+    query GetUser($username: String) {
+        getUser(username: $username) {
+          data {
+            email
+          }
+        }
+      }`)
+
+      const {data} = useQuery(QUERY,{variables:{username:"saim"}})
+console.log(data)
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {

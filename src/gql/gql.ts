@@ -13,7 +13,9 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\nmutation LoginUser($input: LoginInput!) {\n    loginUser(input: $input) {\n      data {\n        email\n        username\n      }\n    }\n  }\n": types.LoginUserDocument,
+    "\nmutation GetUserData($token: String!) {\n  getUserData(token: $token) {\n    data {\n      _id\n      accessToken\n      email\n      username\n    }\n  }\n}": types.GetUserDataDocument,
+    "\nmutation LoginUser($input: LoginInput!) {\n    loginUser(input: $input) {\n      data {\n        email\n        username\n        accessToken\n      }\n    }\n  }\n": types.LoginUserDocument,
+    "\n    query GetUser($username: String) {\n        getUser(username: $username) {\n          data {\n            email\n          }\n        }\n      }": types.GetUserDocument,
 };
 
 /**
@@ -33,7 +35,15 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\nmutation LoginUser($input: LoginInput!) {\n    loginUser(input: $input) {\n      data {\n        email\n        username\n      }\n    }\n  }\n"): (typeof documents)["\nmutation LoginUser($input: LoginInput!) {\n    loginUser(input: $input) {\n      data {\n        email\n        username\n      }\n    }\n  }\n"];
+export function graphql(source: "\nmutation GetUserData($token: String!) {\n  getUserData(token: $token) {\n    data {\n      _id\n      accessToken\n      email\n      username\n    }\n  }\n}"): (typeof documents)["\nmutation GetUserData($token: String!) {\n  getUserData(token: $token) {\n    data {\n      _id\n      accessToken\n      email\n      username\n    }\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\nmutation LoginUser($input: LoginInput!) {\n    loginUser(input: $input) {\n      data {\n        email\n        username\n        accessToken\n      }\n    }\n  }\n"): (typeof documents)["\nmutation LoginUser($input: LoginInput!) {\n    loginUser(input: $input) {\n      data {\n        email\n        username\n        accessToken\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    query GetUser($username: String) {\n        getUser(username: $username) {\n          data {\n            email\n          }\n        }\n      }"): (typeof documents)["\n    query GetUser($username: String) {\n        getUser(username: $username) {\n          data {\n            email\n          }\n        }\n      }"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

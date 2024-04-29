@@ -19,29 +19,35 @@ import { Checkbox } from '../ui/checkbox'
 import Link from 'next/link'
 import { FaFacebook, FaGoogle } from 'react-icons/fa'
 import { graphql } from '@/gql'
-import {  useMutation} from '@apollo/client'
+import { useMutation } from '@apollo/client'
+import useStore from '@/context/globalStore'
+import Cookies from 'js-cookie';
 
 const formSchema = z.object({
     email: z.string().min(6).max(100).email(),
     password: z.string().min(6).max(100)
 })
 
-const LOGIN_USER = graphql(`
+
+
+
+
+const Login = () => {
+    const LOGIN_USER = graphql(`
 mutation LoginUser($input: LoginInput!) {
     loginUser(input: $input) {
       data {
         email
         username
+        accessToken
       }
     }
   }
 `)
 
-
-
-const Login = () => {
-
     const [LoginUser, { data, loading, error }] = useMutation(LOGIN_USER)
+    const setToken = useStore((store) => (store.setToken))
+    const token = useStore((store) => (store.token))
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -51,36 +57,28 @@ const Login = () => {
         },
     })
 
-   
 
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        // console.log(values)
         const { email, password } = values;
-
-        try {
-
-            LoginUser({ variables: { input: { email, password } } })
-
-            if (loading) {
-                console.log('Logging in...'); // You might want to handle loading state accordingly
-            }
         
-            if (data) {
-                console.log('Login successful:', data);
-                // Handle successful login (e.g., navigate to a different page)
-            } else if (error) {
-                console.error('Login failed:', error);
-                // Handle login errors (e.g., display an error message)
-            }
-        
-            // Handle successful login (e.g., navigate to a different page)
-        } catch (error) {
-            console.error('Login error:', error);
-            // Handle login errors (e.g., display an error message)
+        LoginUser({ variables: { input: { email, password } } })
+    }
+
+    if (loading) {
+        console.log('Logging in...');
+    }
+
+    if (data) {
+        console.log('Login successful:', data);
+        const token = data.loginUser.data?.accessToken
+        if (token) {
+            Cookies.set('token',token, { secure: true, httpOnly: true });
+            setToken(token)
         }
+    }
+    if (error) {
+        console.error('Login failed:', error);
     }
 
     return (
@@ -138,8 +136,8 @@ const Login = () => {
                         <hr />
                         <div className="text-center">or sign in with</div>
                         <div className="flex w-full gap-4">
-                            <Button variant={'outline'} type="submit" className='flex items-center gap-2 rounded-none hover:text-white border-2 px-5 w-full group'>Google <FaGoogle className='transition-all duration-100 group-hover:text-[#DB4437] w-4 h-4' /></Button>
-                            <Button variant={'outline'} type="submit" className='flex items-center gap-2 rounded-none hover:text-white border-2 px-5 w-full group'>Facebool <FaFacebook className='transition-all duration-100 group-hover:text-[#1877F2] h-4 w-4' /></Button>
+                            <Button variant={'outline'} type="button" onClick={()=>{console.log(token,'---------token')}} className='flex items-center gap-2 rounded-none hover:text-white border-2 px-5 w-full group'>Google <FaGoogle className='transition-all duration-100 group-hover:text-[#DB4437] w-4 h-4' /></Button>
+                            <Button variant={'outline'} type="button" className='flex items-center gap-2 rounded-none hover:text-white border-2 px-5 w-full group'>Facebool <FaFacebook className='transition-all duration-100 group-hover:text-[#1877F2] h-4 w-4' /></Button>
 
                         </div>
                     </Form>
