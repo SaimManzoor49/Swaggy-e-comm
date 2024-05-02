@@ -1,13 +1,61 @@
 'use client'
 import { sidebar, store } from '@/constants/content'
+import useStore from '@/context/globalStore'
+import { graphql } from '@/gql'
 import { cn } from '@/lib/utils'
+import { useMutation } from '@apollo/client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Button } from './ui/button'
 
 const Sidebar = () => {
-
+    const user = useStore(store => store.user)
+    const setUser = useStore(store => store.setUser)
+    const [token, setToken] = useState("")
+  
     const pathname = usePathname()
+
+    const QUERY = graphql(`
+    mutation GetUserData($token: String!) {
+      getUserData(token: $token) {
+        data {
+          email
+          _id
+          accessToken
+          username
+        }
+      }
+    }
+  `)
+
+  
+  const [getUserData, { loading, error, data }] = useMutation(QUERY)
+
+  useEffect(() => {
+    // Check for token in localStorage only after initial render
+    const accessToken = localStorage.getItem('accessToken')
+    if (!user.email && accessToken && accessToken.length) {
+      setToken(accessToken)
+      getUserData({ variables: { token: accessToken } })
+    }
+  }, [getUserData, user.email])
+
+  useEffect(() => {
+    if (data?.getUserData?.data) {
+      setUser(data.getUserData.data)
+    } else if (error) {
+      localStorage.removeItem('accessToken')
+    }
+  }, [data, error, setUser])
+
+
+  const handleLogout = ()=>{
+    setUser({})
+    setToken("");
+    localStorage.removeItem('accessToken')
+    console.log('LogedOut')
+  }
 
 
     return (
@@ -17,6 +65,19 @@ const Sidebar = () => {
                 {sidebar.links.map((link) => {
 
                     const isActive = (pathname.includes(link.href) && link.href.length > 1) || pathname === link.href
+
+                    if(link.title ==='Login/Signup' && user?.email){
+                        // if(user?.email){
+                           return <span
+                            key={link.title}
+                            className={cn('font-medium hover:text-secondary hover:underline cursor-pointer', isActive && "text-secondary")}
+                            onClick={handleLogout}
+
+                        >
+                            Logout
+                        </span>
+                        // }
+                    }else
                     return (
                         <Link
                             key={link.title}

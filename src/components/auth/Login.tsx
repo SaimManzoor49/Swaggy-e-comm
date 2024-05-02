@@ -36,7 +36,17 @@ const formSchema = z.object({
 
 const Login = () => {
 
-    const [LoginUser, { data, loading, error }] = useMutation(LOGIN_USER)
+    const [LoginUser, { data, loading, error }] = useMutation(graphql(`
+    mutation LoginUser($input: LoginInput!) {
+        loginUser(input: $input) {
+          data {
+            email
+            username
+            accessToken
+          }
+        }
+      }
+    `))
     const setUser = useStore((store) => (store.setUser))
     const token = useStore((store) => (store.token))
 

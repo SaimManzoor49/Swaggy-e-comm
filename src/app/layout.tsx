@@ -3,7 +3,7 @@ import { Inter, Dosis } from "next/font/google";
 import { Providers } from "./providers"
 import "./globals.css";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
-
+import NextTopLoader from 'nextjs-toploader';
 const inter = Dosis({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,6 +26,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="max-w-screen-2xl mx-auto relative">
+          <NextTopLoader 
+           speed={200}
+           color="#8BC926"
+          />
           <Providers>
             {children}
           </Providers>

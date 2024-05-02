@@ -1,7 +1,7 @@
 'use client'
 import { store } from '@/constants/content'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Tabs,
   TabsContent,
@@ -10,9 +10,52 @@ import {
 } from "@/components/ui/tabs"
 import Login from '@/components/auth/Login'
 import Signup from '@/components/auth/Signup'
+import useStore from '@/context/globalStore'
+import { redirect } from 'next/navigation'
+import { graphql } from '@/gql'
+import { useMutation } from '@apollo/client'
 
+const AuthPage = () => {
+  const user = useStore(store => store.user)
+  const setUser = useStore(store => store.setUser)
+  const [token, setToken] = useState("")
 
-const SignUpPage = () => {
+  const QUERY = graphql(`
+    mutation GetUserData($token: String!) {
+      getUserData(token: $token) {
+        data {
+          email
+          _id
+          accessToken
+          username
+        }
+      }
+    }
+  `)
+
+  const [getUserData, { loading, error, data }] = useMutation(QUERY)
+
+  useEffect(() => {
+    if (data?.getUserData?.data) {
+      setUser(data.getUserData.data)
+    } else if (error) {
+      localStorage.removeItem('accessToken')
+    }
+  }, [data, error, setUser])
+
+  useEffect(() => {
+    if (user.email) redirect('/')
+  }, [user?.email])
+
+  useEffect(() => {
+    // Check for token in localStorage only after initial render
+    const accessToken = localStorage.getItem('accessToken')
+    if (!user.email && accessToken && accessToken.length) {
+      setToken(accessToken)
+      getUserData({ variables: { token: accessToken } })
+    }
+  }, [getUserData, user.email])
+
   return (
     <div className='relative'>
       <Image
@@ -33,7 +76,7 @@ const SignUpPage = () => {
               <TabsTrigger value="signup">Signup</TabsTrigger>
             </TabsList>
             <TabsContent value="login">
-             <Login />
+              <Login />
             </TabsContent>
             <TabsContent value="signup">
               <Signup />
@@ -45,4 +88,4 @@ const SignUpPage = () => {
   )
 }
 
-export default SignUpPage
+export default AuthPage

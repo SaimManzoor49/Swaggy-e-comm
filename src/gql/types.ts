@@ -1,6 +1,6 @@
 import { graphql } from "./gql";
 
-export const LOGIN_USER = graphql(`
+export const LOGIN_USER = `
 mutation LoginUser($input: LoginInput!) {
     loginUser(input: $input) {
       data {
@@ -10,4 +10,4 @@ mutation LoginUser($input: LoginInput!) {
       }
     }
   }
-`)
+`
