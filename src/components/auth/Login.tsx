@@ -21,7 +21,9 @@ import { FaFacebook, FaGoogle } from 'react-icons/fa'
 import { graphql } from '@/gql'
 import { useMutation } from '@apollo/client'
 import useStore from '@/context/globalStore'
-import Cookies from 'js-cookie';
+import { getCookie, setCookie } from 'cookies-next';
+import { redirect } from 'next/navigation'
+import { LOGIN_USER } from '@/gql/types'
 
 const formSchema = z.object({
     email: z.string().min(6).max(100).email(),
@@ -33,20 +35,9 @@ const formSchema = z.object({
 
 
 const Login = () => {
-    const LOGIN_USER = graphql(`
-mutation LoginUser($input: LoginInput!) {
-    loginUser(input: $input) {
-      data {
-        email
-        username
-        accessToken
-      }
-    }
-  }
-`)
 
     const [LoginUser, { data, loading, error }] = useMutation(LOGIN_USER)
-    const setToken = useStore((store) => (store.setToken))
+    const setUser = useStore((store) => (store.setUser))
     const token = useStore((store) => (store.token))
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -61,7 +52,7 @@ mutation LoginUser($input: LoginInput!) {
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof formSchema>) {
         const { email, password } = values;
-        
+
         LoginUser({ variables: { input: { email, password } } })
     }
 
@@ -72,10 +63,11 @@ mutation LoginUser($input: LoginInput!) {
     if (data) {
         console.log('Login successful:', data);
         const token = data.loginUser.data?.accessToken
+        setUser(data.loginUser.data)
         if (token) {
-            Cookies.set('token',token, { secure: true, httpOnly: true });
-            setToken(token)
+            localStorage.setItem('accessToken', token)
         }
+        redirect('/')
     }
     if (error) {
         console.error('Login failed:', error);
@@ -120,7 +112,7 @@ mutation LoginUser($input: LoginInput!) {
                                 )}
                             />
                             <div className="flex items-center justify-between">
-                                <Button variant={'outline'} type="submit" className='flex items-center gap-2 rounded-none hover:text-white border-2 border-secondary text-secondary px-5'>Login<ArrowRight className='w-5 h-5 mt-0.5' /></Button>
+                                <Button variant={'outline'} disabled={loading} type="submit" className='flex items-center gap-2 rounded-none hover:text-white border-2 border-secondary text-secondary px-5'>Login<ArrowRight className='w-5 h-5 mt-0.5' /></Button>
                                 <div className="flex justify-center items-center gap-1">
                                     <Checkbox id="terms" />
                                     <label
@@ -136,7 +128,7 @@ mutation LoginUser($input: LoginInput!) {
                         <hr />
                         <div className="text-center">or sign in with</div>
                         <div className="flex w-full gap-4">
-                            <Button variant={'outline'} type="button" onClick={()=>{console.log(token,'---------token')}} className='flex items-center gap-2 rounded-none hover:text-white border-2 px-5 w-full group'>Google <FaGoogle className='transition-all duration-100 group-hover:text-[#DB4437] w-4 h-4' /></Button>
+                            <Button variant={'outline'} type="button" onClick={() => { console.log(token, '---------token') }} className='flex items-center gap-2 rounded-none hover:text-white border-2 px-5 w-full group'>Google <FaGoogle className='transition-all duration-100 group-hover:text-[#DB4437] w-4 h-4' /></Button>
                             <Button variant={'outline'} type="button" className='flex items-center gap-2 rounded-none hover:text-white border-2 px-5 w-full group'>Facebool <FaFacebook className='transition-all duration-100 group-hover:text-[#1877F2] h-4 w-4' /></Button>
 
                         </div>

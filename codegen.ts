@@ -15,7 +15,8 @@ const config: CodegenConfig = {
     "./graphql.schema.json": {
       plugins: ["introspection"]
     }
-  }
+  },
+  ignoreNoDocuments:true
 };
 
 export default config;

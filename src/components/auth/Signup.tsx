@@ -22,6 +22,7 @@ import Link from 'next/link'
 import { FaFacebook, FaGoogle } from 'react-icons/fa'
 import { graphql } from '@/gql'
 import { useQuery } from '@apollo/client'
+import { getCookie, setCookie } from 'cookies-next';
 
 
 
@@ -32,17 +33,7 @@ const formSchema = z.object({
 
 const Signup = () => {
 
-    const QUERY = graphql(`
-    query GetUser($username: String) {
-        getUser(username: $username) {
-          data {
-            email
-          }
-        }
-      }`)
 
-      const {data} = useQuery(QUERY,{variables:{username:"saim"}})
-console.log(data)
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -56,7 +47,7 @@ console.log(data)
     function onSubmit(values: z.infer<typeof formSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        console.log(values)
+
     }
 
     return (
@@ -116,7 +107,7 @@ console.log(data)
                         <div className="flex w-full gap-4">
                             <Button variant={'outline'} type="submit" className='flex items-center gap-2 rounded-none hover:text-white border-2 px-5 w-full group'>Google <FaGoogle className='transition-all duration-100 group-hover:text-[#DB4437] w-4 h-4' /></Button>
                             <Button variant={'outline'} type="submit" className='flex items-center gap-2 rounded-none hover:text-white border-2 px-5 w-full group'>Facebool <FaFacebook className='transition-all duration-100 group-hover:text-[#1877F2] h-4 w-4' /></Button>
-                            
+
                         </div>
                     </Form>
                 </CardContent>
