@@ -8,11 +8,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { Button } from './ui/button'
+import { toast } from 'sonner'
+
 
 const Sidebar = () => {
     const user = useStore(store => store.user)
     const setUser = useStore(store => store.setUser)
     const [token, setToken] = useState("")
+
   
     const pathname = usePathname()
 
@@ -54,7 +57,7 @@ const Sidebar = () => {
     setUser({})
     setToken("");
     localStorage.removeItem('accessToken')
-    console.log('LogedOut')
+    toast.success('loged out!')
   }
 
 

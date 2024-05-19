@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
@@ -24,6 +24,7 @@ import useStore from '@/context/globalStore'
 import { getCookie, setCookie } from 'cookies-next';
 import { redirect } from 'next/navigation'
 import { LOGIN_USER } from '@/gql/types'
+import { toast } from 'sonner'
 
 const formSchema = z.object({
     email: z.string().min(6).max(100).email(),
@@ -70,18 +71,30 @@ const Login = () => {
         console.log('Logging in...');
     }
 
-    if (data) {
-        console.log('Login successful:', data);
-        const token = data.loginUser.data?.accessToken
-        setUser(data.loginUser.data)
-        if (token) {
-            localStorage.setItem('accessToken', token)
-        }
-        redirect('/')
-    }
+    // if (data) {
+    //     console.log('Login successful:', data);
+    //     const token = data.loginUser.data?.accessToken
+    //     setUser(data?.loginUser?.data)
+    //     if (token) {
+    //         localStorage.setItem('accessToken', token)
+    //     }
+    //     redirect('/')
+    // }
     if (error) {
         console.error('Login failed:', error);
     }
+
+    useEffect(()=>{
+        if(data){
+            setUser(data?.loginUser?.data)
+            const token = data.loginUser.data?.accessToken
+            if (token) {
+                localStorage.setItem('accessToken', token)
+            }
+            toast.success('login successfull!')
+            redirect('/')
+        }
+    },[data?.loginUser?.data])
 
     return (
         <>

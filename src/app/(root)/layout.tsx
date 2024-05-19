@@ -2,6 +2,7 @@ import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import Sidebar from '@/components/Sidebar'
 import React from 'react'
+import { Toaster } from 'sonner'
 
 const RootLayout = ({children}:{children:React.ReactNode}) => {
   return (
@@ -14,6 +15,7 @@ const RootLayout = ({children}:{children:React.ReactNode}) => {
     {children}
     <Footer />
     </aside>
+    <Toaster richColors />
     </div>
   )
 }
