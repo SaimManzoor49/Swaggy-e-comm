@@ -6,7 +6,7 @@ const config: CodegenConfig = {
   overwrite: true,
   schema: process.env.NEXT_PUBLIC_BACKEND_URI,
   documents: "src/**/*.tsx",
-  watch:true,
+  // watch:true,
   generates: {
     "src/gql/": {
       preset: "client",
